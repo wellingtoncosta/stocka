@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="Base.AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.ToolbarOverlay" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="titleTextColor">@color/secondary</item>
+    </style>
+
+    <style name="AppTheme.TabLayout" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabRippleColor">@color/primaryDark</item>
+        <item name="tabIndicatorColor">@color/secondaryDark</item>
+        <item name="tabTextColor">@color/secondaryLight</item>
+        <item name="tabSelectedTextColor">@color/secondaryDark</item>
+        <item name="tabTextAppearance">@style/AppTheme.TabLayout.TabTextAppearance</item>
+    </style>
+
+    <style name="AppTheme.TabLayout.TabTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
