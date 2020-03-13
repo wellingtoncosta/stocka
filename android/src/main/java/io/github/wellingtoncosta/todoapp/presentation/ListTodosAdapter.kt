@@ -37,8 +37,9 @@ class ListTodosAdapter : RecyclerView.Adapter<ListTodosAdapter.ViewHolder>() {
         fun bind(todo: Todo) {
             with(binding) {
                 title.text = todo.title
-                details.text = todo.details
                 status.text = getFormattedStatus(todo)
+                details.visibility = if (todo.details.isNullOrEmpty()) View.GONE else View.VISIBLE
+                details.text = todo.details
             }
         }
 

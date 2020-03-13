@@ -28,4 +28,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="AppTheme.TextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="boxBackgroundColor">@null</item>
+        <item name="hintTextColor">@color/secondary</item>
+        <item name="boxStrokeColor">@color/secondary</item>
+    </style>
+
 </resources>
