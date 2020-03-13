@@ -16,7 +16,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/AppTheme.ToolbarOverlay"
-            app:title="@string/app_name"
+            app:title="@string/list_of_todos"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize" />
 
