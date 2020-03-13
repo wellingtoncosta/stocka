@@ -29,11 +29,21 @@ class ListTodosActivity : AppCompatActivity() {
 
         todosViewModel = (applicationContext as App).todosViewModelFactory.create()
 
+        setupRecyclerView()
+
+        setupObservers()
+    }
+
+    private fun setupRecyclerView() {
         binding.recyclerView.run {
             adapter = todosAdapter
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
 
+        binding.swipeLayout.setOnRefreshListener { todosViewModel.load() }
+    }
+
+    private fun setupObservers() {
         todosViewModel.loading.observe(this, Observer {
             Log.d("todos-loading", it.toString())
             binding.swipeLayout.isRefreshing = it
@@ -48,9 +58,6 @@ class ListTodosActivity : AppCompatActivity() {
             Log.e("todos-error", it.toString(), it)
             Snackbar.make(binding.root, R.string.load_todos_error, Snackbar.LENGTH_LONG)
         })
-
-        binding.swipeLayout.setOnRefreshListener { todosViewModel.load() }
-
     }
 
     override fun onResume() {
