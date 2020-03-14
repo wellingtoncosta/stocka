@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import Todo
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,5 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         DataManager.saveContext()
     }
+    
+    lazy var repository: TodoRepository = TodoRepositoryImp()
 
 }

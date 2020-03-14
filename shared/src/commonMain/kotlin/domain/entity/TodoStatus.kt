@@ -16,3 +16,7 @@ enum class TodoStatus(val value: Int) {
     }
 
 }
+
+fun fromValue(value: Int): TodoStatus {
+    return TodoStatus.values().first { it.value == value }
+}

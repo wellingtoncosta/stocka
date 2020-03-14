@@ -29,7 +29,7 @@ class AppCoordinator : Coordinator {
     }
     
     func start() {
-        let viewController = HomeViewController()
+        let viewController = ListTodosViewController()
 
         viewController.coordinator = self
 
