@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.wellingtoncosta.todoapp.R
 import io.github.wellingtoncosta.todoapp.databinding.ItemTodoBinding
 import io.github.wellingtoncosta.todoapp.shared.domain.entity.Todo
-import java.util.*
 
 class ListTodosAdapter : RecyclerView.Adapter<ListTodosAdapter.ViewHolder>() {
 
@@ -37,17 +36,10 @@ class ListTodosAdapter : RecyclerView.Adapter<ListTodosAdapter.ViewHolder>() {
         fun bind(todo: Todo) {
             with(binding) {
                 title.text = todo.title
-                status.text = getFormattedStatus(todo)
+                status.text = itemView.context.getString(R.string.status, todo.status.capitalized())
                 details.visibility = if (todo.details.isNullOrEmpty()) View.GONE else View.VISIBLE
                 details.text = todo.details
             }
-        }
-
-        private fun getFormattedStatus(todo: Todo): String {
-            val status = todo.status.toString().toLowerCase(Locale.getDefault())
-            val firstLetter = status.substring(0, 1).toUpperCase(Locale.getDefault())
-            val capitalized = "$firstLetter${status.substring(1)}"
-            return itemView.context.getString(R.string.status, capitalized)
         }
 
     }
