@@ -9,4 +9,4 @@ Then, go to ios folder in terminal and run `pod install` command to refresh Pods
 
 After these steps you can run both Android and iOS apps on emulator / device.
 
-__Disclaimer: if you run the `./gradlew podspec` to generate a new `.podspec` file, don't forget to edit the value of `spec.libraries` to be equals to `"c++", 'sqlite3'`. Otherwise you'll probably get some stranger errors in Xcode build due `sqlite3` binary linker missings.__
+_Disclaimer: if you run the `./gradlew podspec` to generate a new `.podspec` file, don't forget to edit the value of `spec.libraries` to be equals to `"c++", 'sqlite3'`. Otherwise you'll probably get some stranger errors in Xcode build due `sqlite3` binary linker missings._
