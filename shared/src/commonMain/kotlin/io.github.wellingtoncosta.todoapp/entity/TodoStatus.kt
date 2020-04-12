@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.todoapp.shared.domain.entity
+package io.github.wellingtoncosta.todoapp.entity
 
 enum class TodoStatus(val value: Int) {
     PLANNED(0),

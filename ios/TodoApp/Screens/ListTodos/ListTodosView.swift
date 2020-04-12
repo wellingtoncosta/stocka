@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import Todo
+import shared
 
 class ListTodosView : UIView {
     

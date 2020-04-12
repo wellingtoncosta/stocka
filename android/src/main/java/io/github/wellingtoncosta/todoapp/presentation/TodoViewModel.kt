@@ -1,8 +1,8 @@
 package io.github.wellingtoncosta.todoapp.presentation
 
 import androidx.lifecycle.*
-import io.github.wellingtoncosta.todoapp.shared.domain.entity.Todo
-import io.github.wellingtoncosta.todoapp.shared.domain.repository.TodoRepository
+import io.github.wellingtoncosta.todoapp.entity.Todo
+import io.github.wellingtoncosta.todoapp.repository.TodoRepository
 import kotlinx.coroutines.launch
 
 class TodoViewModel(private val repository: TodoRepository) :  ViewModel() {

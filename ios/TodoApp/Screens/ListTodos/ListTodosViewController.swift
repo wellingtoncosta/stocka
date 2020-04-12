@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Todo
+import shared
 
 class ListTodosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     

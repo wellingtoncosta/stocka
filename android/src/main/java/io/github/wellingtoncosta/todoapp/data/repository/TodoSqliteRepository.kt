@@ -7,10 +7,10 @@ import io.github.wellingtoncosta.todoapp.data.db.TodoContract.TodoEntry.COLUMN_N
 import io.github.wellingtoncosta.todoapp.data.db.TodoContract.TodoEntry.TABLE_NAME
 import io.github.wellingtoncosta.todoapp.data.db.TodoDbHelper
 import io.github.wellingtoncosta.todoapp.data.db.asContentValues
-import io.github.wellingtoncosta.todoapp.shared.domain.entity.Todo
-import io.github.wellingtoncosta.todoapp.shared.domain.entity.TodoStatus
-import io.github.wellingtoncosta.todoapp.shared.domain.entity.TodoStatus.Companion.asTodoStatus
-import io.github.wellingtoncosta.todoapp.shared.domain.repository.TodoRepository
+import io.github.wellingtoncosta.todoapp.entity.Todo
+import io.github.wellingtoncosta.todoapp.entity.TodoStatus
+import io.github.wellingtoncosta.todoapp.entity.TodoStatus.Companion.asTodoStatus
+import io.github.wellingtoncosta.todoapp.repository.TodoRepository
 
 class TodoSqliteRepository(private val helper: TodoDbHelper) : TodoRepository {
 

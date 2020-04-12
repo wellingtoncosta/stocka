@@ -20,8 +20,6 @@
 		BECDF17A241CDFC200D825E7 /* TodoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECDF179241CDFC200D825E7 /* TodoTableCell.swift */; };
 		BECDF180241CFAF000D825E7 /* TodoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECDF17F241CFAF000D825E7 /* TodoTextField.swift */; };
 		BECDF183241CFB5E00D825E7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECDF182241CFB5E00D825E7 /* UITextField+Extension.swift */; };
-		BECDF832241A740200FB63F7 /* Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECDF831241A740200FB63F7 /* Todo.framework */; };
-		BECDF833241A740200FB63F7 /* Todo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BECDF831241A740200FB63F7 /* Todo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BECDF839241A90A000FB63F7 /* TodoRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECDF838241A90A000FB63F7 /* TodoRepositoryImpl.swift */; };
 		BED4C83C241A5CA200083412 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4C83B241A5CA200083412 /* AppDelegate.swift */; };
 		BED4C83E241A5CA200083412 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED4C83D241A5CA200083412 /* SceneDelegate.swift */; };
@@ -55,7 +53,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BECDF833241A740200FB63F7 /* Todo.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BECDF832241A740200FB63F7 /* Todo.framework in Frameworks */,
 				2D4FA7570E9E314E94F43371 /* Pods_TodoApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,7 +486,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../shared/build/xcode-frameworks\"\n./gradlew :shared:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+			shellScript = "
+";
 		};
 		DCA129413438574896CC6067 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

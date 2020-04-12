@@ -181,3 +181,6 @@ iOSInjectionProject/
 
 # VS Code workspace
 *.code-workspace
+
+# Ignoring Pod-related files
+Podfile.lock

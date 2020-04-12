@@ -6,7 +6,8 @@ target 'TodoApp' do
   use_frameworks!
 
   # Pods for TodoApp
-  pod 'SnapKit', '~> 5.0.0'
+  pod 'SnapKit', '~> 5.0.1'
+  pod 'shared', :path => '../shared'
 
   target 'TodoAppTests' do
     inherit! :search_paths

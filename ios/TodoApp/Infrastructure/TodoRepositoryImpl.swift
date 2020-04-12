@@ -7,7 +7,7 @@
 //
 
 import CoreData
-import Todo
+import shared
 
 class TodoRepositoryImp : TodoRepository {
     

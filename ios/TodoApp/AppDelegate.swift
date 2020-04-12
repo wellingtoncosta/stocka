@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Todo
+import shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

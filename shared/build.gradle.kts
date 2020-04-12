@@ -1,56 +1,49 @@
-import java.io.File
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
 
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.native.cocoapods")
+    id("com.squareup.sqldelight")
+}
+
+version = 1.0
+
+sqldelight {
+    database(name = "TodoAppDatabase") {
+        packageName = "io.github.wellingtoncosta.todoapp"
+    }
 }
 
 kotlin {
-    //select iOS target platform depending on the Xcode environment variables
-    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
-
-    iOSTarget("ios") {
-        binaries {
-            framework {
-                baseName = "Todo"
-            }
-        }
-    }
-
     jvm("android")
 
+    setupIosBuild()
+
     sourceSets["commonMain"].dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
     }
 
     sourceSets["androidMain"].dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("com.squareup.sqldelight:sqlite-driver:1.3.0")
+    }
+
+    sourceSets["iosMain"].dependencies {
+        implementation("com.squareup.sqldelight:native-driver:1.3.0")
+    }
+
+    cocoapods {
+        authors = "Wellington Costa Pereira"
+        license = "MIT"
+        summary = "Common core for Todo App."
+        homepage = "https://github.com/wellingtoncosta/todo-app-kotlin-multiplatform"
     }
 }
 
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-
-    //selecting the right configuration for the iOS framework depending on the Xcode environment variables
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getFramework(mode)
-
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
-
-    doLast {
-        val gradlew = File(targetDir, "gradlew")
-        gradlew.writeText("#!/bin/bash\nexport 'JAVA_HOME=${System.getProperty("java.home")}'\ncd '${rootProject.rootDir}'\n./gradlew \$@\n")
-        gradlew.setExecutable(true)
+fun KotlinTargetContainerWithPresetFunctions.setupIosBuild() {
+    val sdkName = System.getenv("SDK_NAME")
+    if (sdkName != null && sdkName.startsWith("iphoneos")) {
+        iosArm64("ios")
+    } else {
+        iosX64("ios")
     }
 }
-
-tasks.getByName("build").dependsOn(packForXcode)

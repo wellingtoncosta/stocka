@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.github.wellingtoncosta.todoapp.App
 import io.github.wellingtoncosta.todoapp.R
 import io.github.wellingtoncosta.todoapp.databinding.ActivityCreateTodoBinding
-import io.github.wellingtoncosta.todoapp.shared.domain.entity.Todo
+import io.github.wellingtoncosta.todoapp.entity.Todo
 
 class CreateTodoActivity : AppCompatActivity() {
 
