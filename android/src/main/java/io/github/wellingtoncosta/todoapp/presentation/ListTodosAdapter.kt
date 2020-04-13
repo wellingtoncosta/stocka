@@ -37,8 +37,8 @@ class ListTodosAdapter : RecyclerView.Adapter<ListTodosAdapter.ViewHolder>() {
             with(binding) {
                 title.text = todo.title
                 status.text = itemView.context.getString(R.string.status, todo.status.capitalized())
-                details.visibility = if (todo.details.isNullOrEmpty()) View.GONE else View.VISIBLE
-                details.text = todo.details
+                details.visibility = if (todo.description.isNullOrEmpty()) View.GONE else View.VISIBLE
+                details.text = todo.description
             }
         }
 

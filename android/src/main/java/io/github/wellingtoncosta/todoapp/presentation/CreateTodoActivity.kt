@@ -51,7 +51,7 @@ class CreateTodoActivity : AppCompatActivity() {
             if (validateFields()) {
                 val todo = Todo(
                     title = binding.titleEditText.text!!.toString(),
-                    details = binding.detailsEditText.text.toString()
+                    description = binding.detailsEditText.text.toString()
                 )
 
                 Log.d(TAG, "Saving new todo: $todo")

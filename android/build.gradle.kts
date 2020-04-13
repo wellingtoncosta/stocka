@@ -54,6 +54,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+
     sourceSets {
         val commonTest = "src/commonTest/java"
         getByName("androidTest").java.srcDirs(commonTest)
@@ -79,4 +83,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.71")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5")
+
+    implementation("com.squareup.sqldelight:android-driver:1.3.0")
 }

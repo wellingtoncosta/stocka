@@ -15,18 +15,17 @@ sqldelight {
 }
 
 kotlin {
-    jvm("android")
-
-    setupIosBuild()
-
     sourceSets["commonMain"].dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
     }
 
-    sourceSets["androidMain"].dependencies {
+    jvm()
+    sourceSets["jvmMain"].dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
         implementation("com.squareup.sqldelight:sqlite-driver:1.3.0")
     }
 
+    setupIosBuild()
     sourceSets["iosMain"].dependencies {
         implementation("com.squareup.sqldelight:native-driver:1.3.0")
     }

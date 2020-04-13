@@ -5,8 +5,11 @@ CREATE TABLE todo (
     status INTEGER NOT NULL CHECK (status >= 0 AND status <= 4)
 );
 
+selectAll:
+SELECT * FROM todo;
+
 insert:
 INSERT INTO todo (title, description, status) VALUES (?,?,?);
 
-selectAll:
-SELECT * FROM todo;
+updateStatus:
+UPDATE todo SET status = ? WHERE id = ?;
