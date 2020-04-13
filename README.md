@@ -5,8 +5,10 @@ A sample project to demonstrate Kotlin Multiplatform running on Android, iOS and
 
 To build this project, firstly you must run the `./gradlew build` task to build things and produce the binaries for Android and iOS from `:shared` module.
 
-Then, go to ios folder in terminal and run `pod install` command to refresh Pods, open `TodoApp.xcworkspace` and build the project.
+So, to build the iOS project, go to `ios` folder via terminal and run `pod install` to install the `shared.podspec` that contains definitions for binaries generated from `:shared` module, and other dependencies added in `Podfile`.
 
-After these steps you can run both Android and iOS apps on emulator / device.
+Then open `HashApp.xcworkspace` and build the project (Command + B).
 
-_Disclaimer: if you run the `./gradlew podspec` to generate a new `.podspec` file, don't forget to edit the value of `spec.libraries` to be equals to `"c++", 'sqlite3'`. Otherwise you'll probably get some stranger errors in Xcode build due `sqlite3` binary linker missings._
+After these steps you should be able to run both Android and iOS apps on emulator / device.
+
+_Disclaimer: if you run `./gradlew podspec` task to generate a new `.podspec` file, don't forget to change value of `spec.libraries` entry to be `"c++", 'sqlite3'`. Otherwise you'll probably get some stranger errors in Xcode build due `sqlite3` binary linker missings._
