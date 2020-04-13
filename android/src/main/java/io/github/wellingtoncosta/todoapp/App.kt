@@ -25,10 +25,7 @@ class App : Application() {
             AndroidSqliteDriver(Schema, applicationContext, "todoapp.db")
         }
 
-        todoRepository =
-            TodoSqlDelightRepository(
-                todoAppDatabase
-            )
+        todoRepository = TodoSqlDelightRepository(todoAppDatabase)
         todosViewModelFactory = TodosViewModel.Factory(todoRepository)
         todoViewModeFactory = TodoViewModel.Factory(todoRepository)
     }
