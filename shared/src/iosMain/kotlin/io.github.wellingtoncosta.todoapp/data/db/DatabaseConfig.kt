@@ -9,6 +9,7 @@ actual fun setupDatabase(body: () -> SqlDriver): TodoAppDatabase {
     return createQueryWrapper(driver)
 }
 
+@Suppress("unused") // called from Swift code
 fun createDatabase(): TodoAppDatabase {
     return setupDatabase {
         NativeSqliteDriver(Schema, "todoapp.db")
