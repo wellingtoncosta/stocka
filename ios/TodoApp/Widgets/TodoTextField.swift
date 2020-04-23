@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoTextField : UIView {
+final class TodoTextField : UIView {
     
     private let label: UILabel = {
         let label = UILabel()
@@ -49,13 +49,25 @@ class TodoTextField : UIView {
         set { }
     }
     
-    private func buildViewHierarchy() {
+    init() {
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension TodoTextField : CustomView {
+    func buildViewHierarchy() {
         addSubview(label)
         addSubview(backgroundView)
         backgroundView.addSubview(field)
     }
     
-    private func addConstraints() {
+    func setupConstraints() {
         label.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.trailing.equalTo(0)
@@ -78,14 +90,6 @@ class TodoTextField : UIView {
         }
     }
     
-    init() {
-        super.init(frame: .zero)
-        buildViewHierarchy()
-        addConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    func setupAdditionalConfiguration() { }
     
 }

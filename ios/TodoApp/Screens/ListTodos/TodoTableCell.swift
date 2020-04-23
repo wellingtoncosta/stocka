@@ -49,7 +49,25 @@ class TodoTableCell : UITableViewCell {
         return label
     }()
     
-    private func addConstraints() {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+}
+
+extension TodoTableCell : CustomView {
+    func buildViewHierarchy() {
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(detailsLabel)
+        contentView.addSubview(statusLabel)
+    }
+    
+    func setupConstraints() {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(contentView).offset(16)
             $0.leading.equalTo(16)
@@ -70,21 +88,8 @@ class TodoTableCell : UITableViewCell {
         }
     }
     
-    private func buildViewHierarchy() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(detailsLabel)
-        contentView.addSubview(statusLabel)
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    func setupAdditionalConfiguration() {
         selectionStyle = .none
-        buildViewHierarchy()
-        addConstraints()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
 }

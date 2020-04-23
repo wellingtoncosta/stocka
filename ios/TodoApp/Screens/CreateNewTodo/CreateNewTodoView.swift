@@ -30,7 +30,24 @@ class CreateNewTodoView : UIView {
         return field
     }()
     
-    private func addConstraints() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension CreateNewTodoView : CustomView {
+    func buildViewHierarchy() {
+        addSubview(titleField)
+        addSubview(detailsField)
+    }
+    
+    func setupConstraints() {
         titleField.snp.makeConstraints {
             $0.top.equalTo(self).offset(128)
             $0.leading.equalTo(16)
@@ -44,20 +61,7 @@ class CreateNewTodoView : UIView {
         }
     }
     
-    private func buildViewHierarchy() {
-        addSubview(titleField)
-        addSubview(detailsField)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func setupAdditionalConfiguration() {
         backgroundColor = .white
-        buildViewHierarchy()
-        addConstraints()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
