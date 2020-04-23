@@ -16,7 +16,7 @@ class TodoTableCell : UITableViewCell {
             guard let todoItem = todo else { return }
             titleLabel.text = todoItem.title
             statusLabel.text = "Status: \(todoItem.status.capitalized())"
-            if let details = todoItem.details {
+            if let details = todoItem.description {
                 detailsLabel.isHidden = false
                 detailsLabel.text = details
             } else {

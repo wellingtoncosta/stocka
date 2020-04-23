@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import shared
 
 class ListTodosView : UIView {
     

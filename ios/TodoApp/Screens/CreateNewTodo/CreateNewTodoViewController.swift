@@ -38,14 +38,14 @@ class CreateNewTodoViewController : UIViewController {
     @objc func saveNewTodo() {
         let view = (self.view as! CreateNewTodoView)
         
-        let todo = Todo(
+        let todo = Todo.init(
             id: nil,
             title: view.titleField.value as String,
-            details: view.detailsField.value as String,
+            description: view.detailsField.value as String,
             status: TodoStatus.planned
         )
         
-        (UIApplication.shared.delegate as! AppDelegate).repository.save(todo: todo)
+        (UIApplication.shared.delegate as! AppDelegate).repository!.save(todo: todo)
         
         navigationController?.popViewController(animated: true)
     }

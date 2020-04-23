@@ -1,9 +1,9 @@
 package io.github.wellingtoncosta.todoapp.entity
 
-enum class TodoStatus(val value: Int) {
-    PLANNED(0),
-    IN_PROGRESS(1),
-    DONE(2);
+enum class TodoStatus {
+    PLANNED,
+    IN_PROGRESS,
+    DONE;
 
     fun capitalized(): String {
         val status = toString().toLowerCase()
@@ -11,12 +11,4 @@ enum class TodoStatus(val value: Int) {
         return "$firstLetter${status.substring(1)}"
     }
 
-    companion object {
-        fun Int.asTodoStatus() = values().first { it.value == this }
-    }
-
-}
-
-fun fromValue(value: Int): TodoStatus {
-    return TodoStatus.values().first { it.value == value }
 }

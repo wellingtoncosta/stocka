@@ -32,7 +32,7 @@ class ListTodosViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        todos = (UIApplication.shared.delegate as! AppDelegate).repository.fetchAll()
+        todos = (UIApplication.shared.delegate as! AppDelegate).repository!.fetchAll()
     }
 
     private func setupNavigationBar() {

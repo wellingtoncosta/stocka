@@ -2,8 +2,9 @@ package io.github.wellingtoncosta.todoapp
 
 import android.app.Application
 import com.squareup.sqldelight.android.AndroidSqliteDriver
-import io.github.wellingtoncosta.todoapp.data.Schema
-import io.github.wellingtoncosta.todoapp.data.TodoSqlDelightRepository
+import io.github.wellingtoncosta.todoapp.data.db.Schema
+import io.github.wellingtoncosta.todoapp.data.TodoRepositoryImpl
+import io.github.wellingtoncosta.todoapp.data.db.setupDatabase
 import io.github.wellingtoncosta.todoapp.presentation.TodoViewModel
 import io.github.wellingtoncosta.todoapp.presentation.TodosViewModel
 import io.github.wellingtoncosta.todoapp.repository.TodoRepository
@@ -22,10 +23,10 @@ class App : Application() {
         super.onCreate()
 
         todoAppDatabase = setupDatabase {
-            AndroidSqliteDriver(Schema, applicationContext, "todoapp.db")
-        }
+                AndroidSqliteDriver(Schema, applicationContext, "todoapp.db")
+            }
 
-        todoRepository = TodoSqlDelightRepository(todoAppDatabase)
+        todoRepository = TodoRepositoryImpl(todoAppDatabase)
         todosViewModelFactory = TodosViewModel.Factory(todoRepository)
         todoViewModeFactory = TodoViewModel.Factory(todoRepository)
     }

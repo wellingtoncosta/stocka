@@ -11,9 +11,16 @@ import shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var database: TodoAppDatabase?
+    var repository: TodoRepository?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        DataManager.setup()
+        
+        self.database = DatabaseConfigKt.createDatabase()
+        
+        self.repository = TodoRepositoryImpl(todoAppDatabase: self.database!)
+        
         return true
     }
 
@@ -36,9 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        DataManager.saveContext()
     }
-    
-    lazy var repository: TodoRepository = TodoRepositoryImp()
 
 }

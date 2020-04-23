@@ -1,15 +1,17 @@
-CREATE TABLE todo (
+import io.github.wellingtoncosta.todoapp.entity.TodoStatus;
+
+CREATE TABLE todos (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    status INTEGER NOT NULL CHECK (status >= 0 AND status <= 4)
+    status TEXT AS TodoStatus NOT NULL
 );
 
 selectAll:
-SELECT * FROM todo;
+SELECT * FROM todos;
 
 insert:
-INSERT INTO todo (title, description, status) VALUES (?,?,?);
+INSERT INTO todos (title, description, status) VALUES (?,?,?);
 
 updateStatus:
-UPDATE todo SET status = ? WHERE id = ?;
+UPDATE todos SET status = ? WHERE id = ?;
