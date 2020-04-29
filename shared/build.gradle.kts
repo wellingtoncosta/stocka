@@ -1,12 +1,21 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
 
 plugins {
+    id("com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
 }
 
 version = 1.0
+
+android {
+    compileSdkVersion(29)
+    defaultConfig {
+        minSdkVersion(16)
+        targetSdkVersion(29)
+    }
+}
 
 sqldelight {
     database(name = "TodoAppDatabase") {
@@ -15,21 +24,30 @@ sqldelight {
 }
 
 kotlin {
-    sourceSets["commonMain"].dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
-    }
+    android("android")
 
-    jvm()
-    sourceSets["jvmMain"].dependencies {
-        implementation("com.squareup.sqldelight:sqlite-driver:1.3.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
-    }
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
+            }
+        }
 
-    setupIosBuild()
-    sourceSets["iosMain"].dependencies {
-        implementation("com.squareup.sqldelight:native-driver:1.3.0")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.5")
+        val androidMain by getting {
+            dependencies {
+                api("com.squareup.sqldelight:android-driver:1.3.0")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
+            }
+        }
+
+        val iosMain by creating {
+            setupIosBuild()
+            dependencies {
+                api("com.squareup.sqldelight:native-driver:1.3.0")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.5")
+            }
+        }
     }
 
     cocoapods {

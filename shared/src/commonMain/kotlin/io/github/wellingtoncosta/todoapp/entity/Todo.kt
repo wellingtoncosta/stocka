@@ -1,4 +1,6 @@
-package io.github.wellingtoncosta.todoapp.entity
+package io.github.wellingtoncosta.todoapp
+
+import io.github.wellingtoncosta.todoapp.entity.TodoStatus
 
 data class Todo(
     val id: Int? = null,

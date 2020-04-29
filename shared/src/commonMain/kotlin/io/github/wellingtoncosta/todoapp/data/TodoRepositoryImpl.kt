@@ -1,7 +1,7 @@
 package io.github.wellingtoncosta.todoapp.data
 
 import io.github.wellingtoncosta.todoapp.TodoAppDatabase
-import io.github.wellingtoncosta.todoapp.entity.Todo
+import io.github.wellingtoncosta.todoapp.Todo
 import io.github.wellingtoncosta.todoapp.entity.TodoStatus
 import io.github.wellingtoncosta.todoapp.repository.TodoRepository
 
