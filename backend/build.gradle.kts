@@ -1,6 +1,21 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(kotlin("gradle-plugin", "1.3.72"))
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven(url = "https://kotlin.bintray.com/kotlinx")
+}
+
 plugins {
     application
-    kotlin("jvm")
+    kotlin("jvm") version "1.3.72"
     id("com.github.johnrengelman.shadow") version "5.0.0"
 }
 
