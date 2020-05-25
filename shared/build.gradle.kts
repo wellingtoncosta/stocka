@@ -30,14 +30,14 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.7")
             }
         }
 
         val androidMain by getting {
             dependencies {
                 api("com.squareup.sqldelight:android-driver:1.3.0")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
             }
         }
 
@@ -45,7 +45,7 @@ kotlin {
             setupIosBuild()
             dependencies {
                 api("com.squareup.sqldelight:native-driver:1.3.0")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.5")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.7")
             }
         }
     }
