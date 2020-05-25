@@ -1,6 +1,6 @@
 package io.github.wellingtoncosta.todoapp.repository
 
-import io.github.wellingtoncosta.todoapp.Todo
+import io.github.wellingtoncosta.todoapp.entity.Todo
 import io.github.wellingtoncosta.todoapp.entity.TodoStatus
 
 interface TodoRepository {

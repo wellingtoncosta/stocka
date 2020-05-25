@@ -1,7 +1,7 @@
 package io.github.wellingtoncosta.todoapp.presentation
 
 import androidx.lifecycle.*
-import io.github.wellingtoncosta.todoapp.Todo
+import io.github.wellingtoncosta.todoapp.entity.Todo
 import io.github.wellingtoncosta.todoapp.repository.TodoRepository
 import kotlinx.coroutines.launch
 
