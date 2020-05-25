@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.wellingtoncosta.todoapp.R
 import io.github.wellingtoncosta.todoapp.databinding.ItemTodoBinding
-import io.github.wellingtoncosta.todoapp.entity.Todo
+import io.github.wellingtoncosta.todoapp.domain.Todo
 
 class ListTodosAdapter : RecyclerView.Adapter<ListTodosAdapter.ViewHolder>() {
 

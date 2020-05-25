@@ -5,7 +5,7 @@ import io.github.wellingtoncosta.todoapp.data.TodoRepositoryImpl
 import io.github.wellingtoncosta.todoapp.data.db.createDatabase
 import io.github.wellingtoncosta.todoapp.presentation.TodoViewModel
 import io.github.wellingtoncosta.todoapp.presentation.TodosViewModel
-import io.github.wellingtoncosta.todoapp.repository.TodoRepository
+import io.github.wellingtoncosta.todoapp.domain.TodoRepository
 
 class App : Application() {
 

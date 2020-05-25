@@ -1,11 +1,12 @@
 package io.github.wellingtoncosta.todoapp.data
 
 import io.github.wellingtoncosta.todoapp.TodoAppDatabase
-import io.github.wellingtoncosta.todoapp.entity.Todo
-import io.github.wellingtoncosta.todoapp.entity.TodoStatus
-import io.github.wellingtoncosta.todoapp.repository.TodoRepository
+import io.github.wellingtoncosta.todoapp.domain.Todo
+import io.github.wellingtoncosta.todoapp.domain.TodoStatus
+import io.github.wellingtoncosta.todoapp.domain.TodoRepository
 
-class TodoRepositoryImpl(private val todoAppDatabase: TodoAppDatabase) : TodoRepository {
+class TodoRepositoryImpl(private val todoAppDatabase: TodoAppDatabase) :
+    TodoRepository {
 
     override fun fetchAll(): List<Todo> {
         return todoAppDatabase.todoQueries

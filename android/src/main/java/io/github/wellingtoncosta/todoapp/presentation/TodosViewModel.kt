@@ -1,8 +1,7 @@
 package io.github.wellingtoncosta.todoapp.presentation
 
-import androidx.lifecycle.*
-import io.github.wellingtoncosta.todoapp.entity.Todo
-import io.github.wellingtoncosta.todoapp.repository.TodoRepository
+import io.github.wellingtoncosta.todoapp.domain.Todo
+import io.github.wellingtoncosta.todoapp.domain.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

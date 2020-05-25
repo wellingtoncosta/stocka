@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.todoapp.entity
+package io.github.wellingtoncosta.todoapp.domain
 
 data class Todo(
     val id: Int? = null,
