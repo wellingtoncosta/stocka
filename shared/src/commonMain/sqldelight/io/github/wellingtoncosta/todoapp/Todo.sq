@@ -1,7 +1,8 @@
-import io.github.wellingtoncosta.todoapp.entity.TodoStatus;
+import io.github.wellingtoncosta.todoapp.domain.TodoStatus;
 
 CREATE TABLE todos (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    external_id TEXT DEFAULT NULL,
     title TEXT NOT NULL,
     description TEXT,
     status TEXT AS TodoStatus NOT NULL
