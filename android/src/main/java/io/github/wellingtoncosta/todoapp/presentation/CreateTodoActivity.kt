@@ -5,32 +5,36 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import io.github.wellingtoncosta.todoapp.App
 import io.github.wellingtoncosta.todoapp.R
 import io.github.wellingtoncosta.todoapp.databinding.ActivityCreateTodoBinding
 import io.github.wellingtoncosta.todoapp.domain.Todo
+import io.github.wellingtoncosta.todoapp.presentation.create.*
 
 class CreateTodoActivity : AppCompatActivity() {
 
     private var _binding: ActivityCreateTodoBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var todoViewModel: TodoViewModel
+    private lateinit var presenter: CreateNewTodoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        todoViewModel = (applicationContext as App).todoViewModeFactory.create()
+        presenter = (applicationContext as App).createNewTodoPresenter
 
         setupBinding()
 
         setupToolbar()
 
         setupSaveButton()
+    }
 
-        setupObservers()
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        presenter.destroy()
     }
 
     private fun setupBinding() {
@@ -46,6 +50,13 @@ class CreateTodoActivity : AppCompatActivity() {
         }
     }
 
+    private fun validateFields(): Boolean {
+        return (!binding.titleEditText.text.isNullOrEmpty()).also {
+            binding.titleInput.isErrorEnabled = !it
+            binding.titleInput.error = if (!it) getString(R.string.title_required) else null
+        }
+    }
+
     private fun setupSaveButton() {
         binding.saveButton.setOnClickListener {
             if (validateFields()) {
@@ -54,37 +65,37 @@ class CreateTodoActivity : AppCompatActivity() {
                     description = binding.detailsEditText.text.toString()
                 )
 
-                Log.d(TAG, "Saving new todo: $todo")
-
-                todoViewModel.save(todo)
+                presenter.execute(todo, this::handleState)
             }
         }
     }
 
-    private fun validateFields(): Boolean {
-        return (!binding.titleEditText.text.isNullOrEmpty()).also {
-            binding.titleInput.isErrorEnabled = !it
-            binding.titleInput.error = if (!it) getString(R.string.title_required) else null
+    private fun handleState(state: CreateNewTodoState) {
+        when (state) {
+            is Loading -> saving(true)
+            is Success -> handleSuccess()
+            is Error -> handleError(state)
         }
     }
 
-    private fun setupObservers() {
-        todoViewModel.saving.observe(this, Observer {
-            Log.d(TAG, "loading: $it")
-            binding.titleInput.visibility = if (it) View.GONE else View.VISIBLE
-            binding.detailsEditText.visibility = if (it) View.GONE else View.VISIBLE
-            binding.saveButton.visibility = if (it) View.GONE else View.VISIBLE
-        })
+    private fun saving(value: Boolean) {
+        binding.titleInput.visibility = if (value) View.GONE else View.VISIBLE
+        binding.detailsEditText.visibility = if (value) View.GONE else View.VISIBLE
+        binding.saveButton.visibility = if (value) View.GONE else View.VISIBLE
+        binding.progress.visibility = if (value) View.VISIBLE else View.GONE
+    }
 
-        todoViewModel.saved.observe(this, Observer {
-            Log.d(TAG, "saved: $it")
-            if (it) { finish() }
-        })
+    private fun handleSuccess() {
+        saving(false).also {
+            finish()
+        }
+    }
 
-        todoViewModel.error.observe(this, Observer {
-            Log.e(TAG, "error: $it", it)
+    private fun handleError(error: Error) {
+        saving(false).also {
+            Log.e(TAG, "error: ${error.cause}", error.cause)
             Snackbar.make(binding.root, R.string.create_new_todo_failure, Snackbar.LENGTH_LONG)
-        })
+        }
     }
 
     companion object {
