@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("com.android.library")
@@ -42,10 +43,11 @@ kotlin {
         }
 
         val iosMain by creating {
-            setupIosBuild()
-            dependencies {
-                api("com.squareup.sqldelight:native-driver:1.3.0")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.7")
+            iosTarget {
+                dependencies {
+                    api("com.squareup.sqldelight:native-driver:1.3.0")
+                    api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.7")
+                }
             }
         }
     }
@@ -58,11 +60,19 @@ kotlin {
     }
 }
 
-fun KotlinTargetContainerWithPresetFunctions.setupIosBuild() {
-    val sdkName = System.getenv("SDK_NAME")
-    if (sdkName != null && sdkName.startsWith("iphoneos")) {
+fun KotlinTargetContainerWithPresetFunctions.iosTarget(
+    configuration: KotlinTargetContainerWithPresetFunctions.() -> Unit
+) {
+    apply(configuration)
+
+    val isDevice = System.getenv("SDK_NAME")?.startsWith("iphoneos") == true
+    if (isDevice) {
         iosArm64("ios")
     } else {
         iosX64("ios")
+    }
+
+    targets.getByName<KotlinNativeTarget>("ios").compilations.forEach {
+        it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
     }
 }

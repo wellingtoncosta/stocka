@@ -10,5 +10,3 @@ So, to build the iOS project, go to `ios` folder via terminal and run `pod insta
 Then open `HashApp.xcworkspace` and build the project (Command + B).
 
 After these steps you should be able to run both Android and iOS apps on emulator / device.
-
-_Disclaimer: if you run `./gradlew podspec` task to generate a new `.podspec` file, don't forget to change value of `spec.libraries` entry to be `"c++", 'sqlite3'`. Otherwise you'll probably get some stranger errors in Xcode build due `sqlite3` binary linker missings._
