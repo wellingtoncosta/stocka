@@ -69,11 +69,6 @@ dependencies {
     implementation(project(":shared"))
 
     implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
