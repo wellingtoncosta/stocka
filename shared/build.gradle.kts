@@ -38,7 +38,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("com.squareup.sqldelight:android-driver:1.3.0")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7")
             }
         }
 
