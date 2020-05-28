@@ -7,12 +7,9 @@ import org.jetbrains.exposed.sql.Database
 
 private fun buildDataSource() = HikariDataSource(HikariConfig().apply {
     driverClassName = "org.postgresql.Driver"
-    jdbcUrl =
-        EnvironmentVariables.jdbcDatabaseUrl
-    username =
-        EnvironmentVariables.jdbcDatabaseUsername
-    password =
-        EnvironmentVariables.jdbcDatabasePassword
+    jdbcUrl = EnvironmentVariables.jdbcDatabaseUrl
+    username = EnvironmentVariables.jdbcDatabaseUsername
+    password = EnvironmentVariables.jdbcDatabasePassword
 })
 
 private fun runMigrations() {
