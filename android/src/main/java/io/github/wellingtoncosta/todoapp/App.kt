@@ -2,6 +2,7 @@ package io.github.wellingtoncosta.todoapp
 
 import android.app.Application
 import io.github.wellingtoncosta.todoapp.data.TodoRepositoryImpl
+import io.github.wellingtoncosta.todoapp.data.api.TodoApi
 import io.github.wellingtoncosta.todoapp.data.db.createDatabase
 import io.github.wellingtoncosta.todoapp.domain.TodoRepository
 import io.github.wellingtoncosta.todoapp.presentation.create.CreateNewTodoPresenter
@@ -10,6 +11,8 @@ import io.github.wellingtoncosta.todoapp.presentation.list.ListTodosPresenter
 class App : Application() {
 
     private lateinit var todoAppDatabase: TodoAppDatabase
+
+    private lateinit var todoApi: TodoApi
 
     private lateinit var todoRepository: TodoRepository
 
@@ -24,7 +27,9 @@ class App : Application() {
 
         todoAppDatabase = createDatabase()
 
-        todoRepository = TodoRepositoryImpl(todoAppDatabase)
+        todoApi = TodoApi.Impl()
+
+        todoRepository = TodoRepositoryImpl(todoAppDatabase, todoApi)
     }
 
 }

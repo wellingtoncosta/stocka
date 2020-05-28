@@ -67,7 +67,7 @@ class ListTodosActivity : AppCompatActivity() {
     private fun handleError(error: Error) {
         refreshing(false).also {
             Log.e(TAG, "error: ${error.cause}", error.cause)
-            Snackbar.make(binding.root, R.string.load_todos_error, Snackbar.LENGTH_LONG)
+            Snackbar.make(binding.root, R.string.load_todos_error, Snackbar.LENGTH_LONG).show()
         }
     }
 

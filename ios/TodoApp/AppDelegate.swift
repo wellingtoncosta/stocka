@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var database: TodoAppDatabase?
     
+    var api: TodoApi?
+    
     var repository: TodoRepository?
     
     lazy var listTodosPresenter: ListTodosPresenter = {
@@ -28,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.database = DatabaseConfigKt.createDatabase()
         
-        self.repository = TodoRepositoryImpl(todoAppDatabase: self.database!)
+        self.api = TodoApiImpl()
+        
+        self.repository = TodoRepositoryImpl(todoAppDatabase: self.database!, todoApi: self.api!)
         
         return true
     }

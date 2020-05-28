@@ -65,6 +65,7 @@ class CreateTodoActivity : AppCompatActivity() {
                     description = binding.detailsEditText.text.toString()
                 )
 
+                binding.root.hideKeyboard()
                 presenter.execute(todo, this::handleState)
             }
         }
@@ -94,7 +95,7 @@ class CreateTodoActivity : AppCompatActivity() {
     private fun handleError(error: Error) {
         saving(false).also {
             Log.e(TAG, "error: ${error.cause}", error.cause)
-            Snackbar.make(binding.root, R.string.create_new_todo_failure, Snackbar.LENGTH_LONG)
+            Snackbar.make(binding.root, R.string.create_new_todo_failure, Snackbar.LENGTH_LONG).show()
         }
     }
 
