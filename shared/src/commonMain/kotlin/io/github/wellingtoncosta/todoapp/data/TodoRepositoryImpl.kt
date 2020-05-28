@@ -1,14 +1,36 @@
 package io.github.wellingtoncosta.todoapp.data
 
 import io.github.wellingtoncosta.todoapp.TodoAppDatabase
+import io.github.wellingtoncosta.todoapp.data.api.SaveTodoRequest
+import io.github.wellingtoncosta.todoapp.data.api.TodoApi
 import io.github.wellingtoncosta.todoapp.domain.Todo
-import io.github.wellingtoncosta.todoapp.domain.TodoStatus
 import io.github.wellingtoncosta.todoapp.domain.TodoRepository
+import io.github.wellingtoncosta.todoapp.domain.TodoStatus
 
-class TodoRepositoryImpl(private val todoAppDatabase: TodoAppDatabase) :
-    TodoRepository {
+class TodoRepositoryImpl(
+    private val todoAppDatabase: TodoAppDatabase,
+    private val todoApi: TodoApi
+) : TodoRepository {
 
-    override fun fetchAll(): List<Todo> {
+    override suspend fun fetchAll(): List<Todo> {
+        return try {
+            todoApi.getAll()
+                .map { it.toDomain() }
+                .filterNot { exists(it.externalId!!) }
+                .forEach { insert(it) }
+                .let { selectAllFromDatabase() }
+        } catch (exception: Throwable) {
+            selectAllFromDatabase()
+        }
+    }
+
+    private fun exists(externalId: String): Boolean {
+        return todoAppDatabase.todoQueries
+            .selectByExternalId(externalId)
+            .executeAsOneOrNull() != null
+    }
+
+    private fun selectAllFromDatabase(): List<Todo> {
         return todoAppDatabase.todoQueries
             .selectAll()
             .executeAsList()
@@ -22,19 +44,23 @@ class TodoRepositoryImpl(private val todoAppDatabase: TodoAppDatabase) :
             }
     }
 
-    override fun save(todo: Todo) {
+    private fun insert(todo: Todo) {
         todoAppDatabase.todoQueries.insert(
+            external_id = todo.externalId,
             title = todo.title,
             description = todo.description,
             status = todo.status
         )
     }
 
-    override fun updateStatus(todoId: Long, staatus: TodoStatus) {
-        todoAppDatabase.todoQueries.updateStatus(
-            status = staatus,
-            id = todoId
-        )
+    override suspend fun save(todo: Todo) {
+        todoApi.save(SaveTodoRequest.from(todo))
+            .toDomain()
+            .let { insert(it) }
+    }
+
+    override suspend fun updateStatus(todoId: Long, staatus: TodoStatus) {
+        TODO("Not yet implemented")
     }
 
 }
