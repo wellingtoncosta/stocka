@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Coordinator : AnyObject{
+protocol Coordinator : AnyObject {
     
     var currentViewController: UIViewController? { get }
     

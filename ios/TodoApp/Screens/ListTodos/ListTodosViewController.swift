@@ -13,16 +13,23 @@ class ListTodosViewController: UIViewController, UITableViewDataSource, UITableV
     
     weak var coordinator: AppCoordinator?
     
-    let cellId = "todoCellId"
+    private lazy var presenter: ListTodosPresenter =
+        (UIApplication.shared.delegate as! AppDelegate).listTodosPresenter
+    
+    private let cellId = "todoCellId"
     
     var todos : [Todo] = [Todo]() {
         didSet {
-            (view as! ListTodosView).todosTableView.reloadData()
+            (view as! ListTodosView).tableView.reloadData()
         }
     }
 
     override func loadView() {
         view = ListTodosView()
+    }
+    
+    deinit {
+        self.presenter.destroy()
     }
     
     override func viewDidLoad() {
@@ -32,22 +39,59 @@ class ListTodosViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        todos = (UIApplication.shared.delegate as! AppDelegate).repository!.fetchAll()
+        super.viewDidAppear(animated)
+        self.presenter.execute(callback: self.handleState)
+    }
+    
+    private func handleState(state: ListTodosState) {
+        switch state {
+        case is Loading:
+            loading(value: true)
+            break
+        case is Success:
+            handleSuccess(success: state as! Success)
+            break
+        case is Error:
+            handleError()
+            break
+        default:
+            handleError()
+        }
+    }
+    
+    private func loading(value: Bool) {
+        let view = (self.view as! ListTodosView)
+        view.tableView.isHidden = value
+        if value {
+            view.loadingView.startAnimating()
+        } else {
+            view.loadingView.stopAnimating()
+        }
+    }
+    
+    private func handleSuccess(success: Success) {
+        loading(value: false)
+        todos = success.results
+    }
+    
+    private func handleError() {
+        loading(value: false)
+        self.showAlert(title: "Error", message: "Unable to load todos.")
     }
 
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.topItem?.title = "List of Todos"
-        let addItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(goToCreateNewTodoScreen))
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = addItem
+        navigationController?.navigationBar.topItem?.rightBarButtonItem =
+            UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(goToCreateNewTodoScreen))
     }
-    
+
     @objc func goToCreateNewTodoScreen() {
         navigationController?.pushViewController(CreateNewTodoViewController(), animated: true)
     }
-    
+
     private func setupTableView() {
-        let tableView = (view as! ListTodosView).todosTableView
+        let tableView = (view as! ListTodosView).tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self

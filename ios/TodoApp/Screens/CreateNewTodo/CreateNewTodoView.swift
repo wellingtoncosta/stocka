@@ -10,6 +10,13 @@ import UIKit
 
 class CreateNewTodoView : UIView {
     
+    let loadingView: UIActivityIndicatorView = {
+        let loadingView = UIActivityIndicatorView()
+        loadingView.color = .gray
+        loadingView.style = .large
+        return loadingView
+    }()
+    
     let titleField: TodoTextField = {
         let field = TodoTextField()
         field.labelText = "Title"
@@ -43,11 +50,17 @@ class CreateNewTodoView : UIView {
 
 extension CreateNewTodoView : CustomView {
     func buildViewHierarchy() {
+        addSubview(loadingView)
         addSubview(titleField)
         addSubview(detailsField)
     }
     
     func setupConstraints() {
+        loadingView.snp.makeConstraints {
+            $0.centerY.equalTo(self)
+            $0.centerX.equalTo(self)
+        }
+        
         titleField.snp.makeConstraints {
             $0.top.equalTo(self).offset(128)
             $0.leading.equalTo(16)
@@ -64,4 +77,5 @@ extension CreateNewTodoView : CustomView {
     func setupAdditionalConfiguration() {
         backgroundColor = .white
     }
+    
 }

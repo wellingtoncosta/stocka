@@ -11,6 +11,7 @@
 		1C361B8147E7CC928FB3F588 /* Pods_TodoApp_TodoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005DCAC9F089264CA4E4EDF8 /* Pods_TodoApp_TodoAppUITests.framework */; };
 		5AED99B82DA8F0BCF824B668 /* Pods_TodoAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D6A9BC3FBD737CCDA0030F /* Pods_TodoAppTests.framework */; };
 		BE056E8B24512F980034E2C7 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE056E8A24512F980034E2C7 /* CustomView.swift */; };
+		BE56E3E7247F4D4000026144 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56E3E6247F4D4000026144 /* UIViewController+Extension.swift */; };
 		BE653562241A65030049598C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE653561241A65030049598C /* AppCoordinator.swift */; };
 		BE653566241A6CD20049598C /* ListTodosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE653565241A6CD20049598C /* ListTodosView.swift */; };
 		BE653568241A6E1F0049598C /* ListTodosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE653567241A6E1F0049598C /* ListTodosViewController.swift */; };
@@ -67,6 +68,7 @@
 		78D6A9BC3FBD737CCDA0030F /* Pods_TodoAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8675B7BB3EC495C18EDAAE27 /* Pods-TodoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoApp.release.xcconfig"; path = "Target Support Files/Pods-TodoApp/Pods-TodoApp.release.xcconfig"; sourceTree = "<group>"; };
 		BE056E8A24512F980034E2C7 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		BE56E3E6247F4D4000026144 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		BE653554241A5E910049598C /* TodoApp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = TodoApp; path = ../shared/build/bin/ios/debugFramework/TodoApp.framework/TodoApp; sourceTree = "<group>"; };
 		BE653561241A65030049598C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		BE653565241A6CD20049598C /* ListTodosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTodosView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				BECDF182241CFB5E00D825E7 /* UITextField+Extension.swift */,
+				BE56E3E6247F4D4000026144 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE56E3E7247F4D4000026144 /* UIViewController+Extension.swift in Sources */,
 				BE653568241A6E1F0049598C /* ListTodosViewController.swift in Sources */,
 				BECDF180241CFAF000D825E7 /* TodoTextField.swift in Sources */,
 				BECDF17A241CDFC200D825E7 /* TodoTableCell.swift in Sources */,

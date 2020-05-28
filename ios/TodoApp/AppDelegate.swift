@@ -13,7 +13,16 @@ import shared
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var database: TodoAppDatabase?
+    
     var repository: TodoRepository?
+    
+    lazy var listTodosPresenter: ListTodosPresenter = {
+        ListTodosPresenter(repository: self.repository!)
+    }()
+    
+    lazy var createNewTodoPresenter: CreateNewTodoPresenter = {
+        CreateNewTodoPresenter(repository: self.repository!)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

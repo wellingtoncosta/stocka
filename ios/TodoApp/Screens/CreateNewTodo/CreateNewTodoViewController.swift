@@ -11,13 +11,19 @@ import shared
 
 class CreateNewTodoViewController : UIViewController {
     
+    private lazy var presenter: CreateNewTodoPresenter =
+        (UIApplication.shared.delegate as! AppDelegate).createNewTodoPresenter
+    
     override func loadView() {
         view = CreateNewTodoView()
     }
     
+    deinit {
+        self.presenter.destroy()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
     }
     
@@ -48,6 +54,43 @@ class CreateNewTodoViewController : UIViewController {
         (UIApplication.shared.delegate as! AppDelegate).repository!.save(todo: todo)
         
         navigationController?.popViewController(animated: true)
+    }
+
+    private func handleState(state: CreateNewTodoState) {
+        switch state {
+        case is Loading_:
+            saving(value: true)
+            break
+        case is Success_:
+            handleSuccess()
+            break
+        case is Error_:
+            handleError()
+            break
+        default:
+            handleError()
+        }
+    }
+    
+    private func saving(value: Bool) {
+        let view = (self.view as! CreateNewTodoView)
+        view.titleField.isHidden = value
+        view.detailsField.isHidden = value
+        if value {
+            view.loadingView.startAnimating()
+        } else {
+            view.loadingView.stopAnimating()
+        }
+    }
+    
+    private func handleSuccess() {
+        saving(value: false)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func handleError() {
+        saving(value: false)
+        self.showAlert(title: "Error", message: "Unable to save todos.")
     }
     
 }

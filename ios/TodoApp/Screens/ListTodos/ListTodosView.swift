@@ -11,7 +11,14 @@ import SnapKit
 
 final class ListTodosView : UIView {
     
-    let todosTableView: UITableView = {
+    let loadingView: UIActivityIndicatorView = {
+        let loadingView = UIActivityIndicatorView()
+        loadingView.color = .gray
+        loadingView.style = .large
+        return loadingView
+    }()
+    
+    let tableView: UITableView = {
         let tableview = UITableView()
         return tableview
     }()
@@ -29,19 +36,27 @@ final class ListTodosView : UIView {
 
 extension ListTodosView : CustomView {
     func buildViewHierarchy() {
-        addSubview(todosTableView)
+        addSubview(tableView)
+        addSubview(loadingView)
     }
     
     func setupConstraints() {
-        todosTableView.topAnchor.constraint(equalTo:self.safeAreaLayoutGuide.topAnchor).isActive = true
-        todosTableView.leftAnchor.constraint(equalTo:self.safeAreaLayoutGuide.leftAnchor).isActive = true
-        todosTableView.rightAnchor.constraint(equalTo:self.safeAreaLayoutGuide.rightAnchor).isActive = true
-        todosTableView.bottomAnchor.constraint(equalTo:self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        loadingView.snp.makeConstraints {
+            $0.centerY.equalTo(self)
+            $0.centerX.equalTo(self)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.left.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
     }
     
     func setupAdditionalConfiguration() {
         backgroundColor = .white
-        todosTableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
     }
     
 }
