@@ -2,7 +2,7 @@ import io.github.wellingtoncosta.todoapp.domain.TodoStatus;
 
 CREATE TABLE todos (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    external_id TEXT DEFAULT NULL,
+    external_id TEXT UNIQUE DEFAULT NULL,
     title TEXT NOT NULL,
     description TEXT,
     status TEXT AS TodoStatus NOT NULL
@@ -11,8 +11,11 @@ CREATE TABLE todos (
 selectAll:
 SELECT * FROM todos;
 
+selectByExternalId:
+SELECT * FROM todos WHERE external_id = ?;
+
 insert:
-INSERT INTO todos (title, description, status) VALUES (?,?,?);
+INSERT INTO todos (external_id, title, description, status) VALUES (?,?,?,?);
 
 updateStatus:
 UPDATE todos SET status = ? WHERE id = ?;
