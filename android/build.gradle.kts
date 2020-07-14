@@ -7,7 +7,7 @@ android {
     compileSdkVersion(29)
 
     defaultConfig {
-        applicationId = "io.github.wellingtoncosta.todoapp"
+        applicationId = "dev.wellingtoncosta.todoapp"
         minSdkVersion(16)
         targetSdkVersion(29)
         versionCode = 1
@@ -18,8 +18,8 @@ android {
             useSupportLibrary = true
         }
 
-        viewBinding {
-            isEnabled = true
+        buildFeatures {
+            viewBinding = true
         }
     }
 
@@ -71,7 +71,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("com.google.android.material:material:1.1.0")
 
@@ -79,5 +79,5 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7")
 
-    implementation("com.squareup.sqldelight:android-driver:1.3.0")
+    implementation("com.squareup.sqldelight:android-driver:1.4.0")
 }
