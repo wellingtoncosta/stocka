@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("com.android.library")
@@ -49,7 +48,7 @@ kotlin {
                 api("io.ktor:ktor-client-logging-jvm:1.3.2")
                 api("io.ktor:ktor-client-serialization-jvm:1.3.2")
 
-                api("com.squareup.sqldelight:android-driver:1.3.0")
+                api("com.squareup.sqldelight:android-driver:1.4.0")
 
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0")
@@ -64,7 +63,7 @@ kotlin {
                     api("io.ktor:ktor-client-logging-native:1.3.2")
                     api("io.ktor:ktor-client-serialization-native:1.3.2")
 
-                    api("com.squareup.sqldelight:native-driver:1.3.0")
+                    api("com.squareup.sqldelight:native-driver:1.4.0")
 
                     api("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.7")
                     api("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:0.20.0")
@@ -91,9 +90,5 @@ fun KotlinTargetContainerWithPresetFunctions.iosTarget(
         iosArm64("ios")
     } else {
         iosX64("ios")
-    }
-
-    targets.getByName<KotlinNativeTarget>("ios").compilations.forEach {
-        it.kotlinOptions.freeCompilerArgs += arrayOf("-linker-options", "-lsqlite3")
     }
 }
