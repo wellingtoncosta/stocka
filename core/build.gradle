@@ -27,7 +27,7 @@ kotlin {
         commonTest {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-test-common:1.5.0'
-                implementation 'org.jetbrains.kotlin:test-annotations-common:1.5.0'
+                implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common:1.5.0'
             }
         }
         jvmMain {
