@@ -1,0 +1,55 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.4.32'
+}
+
+group = 'dev.wellingtoncosta'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+    linuxX64()
+    mingwX64()
+    macosX64()
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = '1.8'
+        }
+        testRuns["test"].executionTask.configure {
+            useJUnit()
+        }
+    }
+    sourceSets {
+        commonMain {
+
+        }
+        commonTest {
+            dependencies {
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
+            }
+        }
+        jvmMain {
+
+        }
+        jvmTest {
+            dependencies {
+                implementation kotlin('test-junit')
+            }
+        }
+        linuxX64Main {
+
+        }
+        linuxX64Test {
+
+        }
+        macosX64Main {
+
+        }
+        macosX64Test {
+
+        }
+    }
+}
