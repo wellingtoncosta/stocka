@@ -29,5 +29,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Setup Kotlin/Native Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan
+
       - name: Build Core Module
         run: cd core/ && ./gradlew build
