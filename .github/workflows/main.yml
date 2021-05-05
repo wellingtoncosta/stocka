@@ -9,15 +9,10 @@ on:
 jobs:
   build_core_project:
     runs-on: macos-latest
+    container: gradle:jdk11
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v2
-
-      - name: Setup JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
 
       - name: Setup Gradle Dependencies Cache
         uses: actions/cache@v2
