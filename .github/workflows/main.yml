@@ -33,4 +33,4 @@ jobs:
         run: cd core/ && ./gradlew build
 
       - name: Publish Core Module Artifacts
-        run: cd core/ && echo "ghp.username=${{ github.actor }}\nghp.token=${{ secrets.GITHUB_TOKEN }}" > gradle.properties && ./gradlew publish
+        run: cd core/ && echo "ghp.username=${{ github.actor }}\nghp.token=${{ secrets.GITHUB_TOKEN }}" >> gradle.properties && ./gradlew publish
