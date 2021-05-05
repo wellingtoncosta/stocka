@@ -41,30 +41,6 @@ kotlin {
                 implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common:1.5.0'
             }
         }
-        iosMain {
-
-        }
-        iosTest {
-
-        }
-        jvmMain {
-
-        }
-        jvmTest {
-
-        }
-        linuxX64Main {
-
-        }
-        linuxX64Test {
-
-        }
-        macosX64Main {
-
-        }
-        macosX64Test {
-
-        }
     }
 }
 
