@@ -51,9 +51,7 @@ kotlin {
 
         }
         jvmTest {
-            dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-test-junit:1.5.0'
-            }
+
         }
         linuxX64Main {
 
