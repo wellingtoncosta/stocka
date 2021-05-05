@@ -62,8 +62,8 @@ publishing {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/wellingtoncosta/catalog-kotlin-multiplatform"
             credentials {
-                username = project.findProperty("ghp.username")
-                password = project.findProperty("ghp.token")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
