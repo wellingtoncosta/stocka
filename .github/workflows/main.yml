@@ -19,8 +19,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - run: cd core/
-
       - name: Setup Gradle Dependencies Cache
         uses: actions/cache@v2
         with:
@@ -34,4 +32,4 @@ jobs:
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Build Core Project
-        run: ./gradlew build
+        run: cd core/ && ./gradlew build
