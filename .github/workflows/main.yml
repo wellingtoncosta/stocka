@@ -20,5 +20,4 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build Core Project
-      - run: cd core/
-      - run: ./gradlew build
+        run: cd core/ && ./gradlew build
