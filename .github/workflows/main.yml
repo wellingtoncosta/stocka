@@ -29,13 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Change to the Core Module Directory
-        run: cd core/
-
       - name: Build Core Module
-        run: ./gradlew build
+        run: cd core/ && ./gradlew build
 
       - name: Publish Core Module Artifacts
-        run: |
-          echo "ghp.username=${{ github.actor }}\ngpr.token=${{ secrets.GITHUB_TOKEN }}" > gradle.properties
-          ./gradlew publish
+        run: echo "ghp.username=${{ github.actor }}\ngpr.token=${{ secrets.GITHUB_TOKEN }}" > gradle.properties && ./gradlew publish
