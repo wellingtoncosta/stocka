@@ -1,8 +1,9 @@
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '1.5.0'
+    id 'maven-publish'
 }
 
-group = 'dev.wellingtoncosta'
+group = 'dev.wellingtoncosta.catalog'
 version = '1.0.0'
 
 repositories {
@@ -51,6 +52,19 @@ kotlin {
         }
         macosX64Test {
 
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/wellingtoncosta/catalog-kotlin-multiplatform"
+            credentials {
+                username = project.findProperty("ghp.username")
+                password = project.findProperty("ghp.token")
+            }
         }
     }
 }
