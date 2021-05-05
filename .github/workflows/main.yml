@@ -1,4 +1,4 @@
-name: Main Pipeline
+name: Build Modules
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build_publish_core_module:
+  build_core_module:
     runs-on: macos-latest
     steps:
       - name: Fetch Sources
@@ -31,8 +31,3 @@ jobs:
 
       - name: Build Core Module
         run: cd core/ && ./gradlew build
-
-      - name: Publish Core Module Artifacts
-        run: cd core/ && ./gradlew publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

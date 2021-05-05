@@ -1,0 +1,29 @@
+name: Release and Publish Packages
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release_publish:
+    runs-on: macos-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Core Module Artifacts
+        run: cd core/ && ./gradlew publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
