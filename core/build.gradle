@@ -11,6 +11,13 @@ repositories {
 }
 
 kotlin {
+    ios {
+        binaries {
+            framework {
+                baseName = 'catalog-core'
+            }
+        }
+    }
     linuxX64()
     macosX64()
     jvm {
@@ -21,6 +28,7 @@ kotlin {
             useJUnit()
         }
     }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -32,6 +40,12 @@ kotlin {
                 implementation 'org.jetbrains.kotlin:kotlin-test-common:1.5.0'
                 implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common:1.5.0'
             }
+        }
+        iosMain {
+
+        }
+        iosTest {
+
         }
         jvmMain {
 
