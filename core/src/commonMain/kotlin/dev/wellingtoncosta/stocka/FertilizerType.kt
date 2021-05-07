@@ -1,4 +1,4 @@
-package dev.wellingtoncosta.catalog
+package dev.wellingtoncosta.stocka
 
 enum class FertilizerType {
     INORGANIC,

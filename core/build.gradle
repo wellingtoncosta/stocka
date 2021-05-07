@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'dev.wellingtoncosta.catalog'
+group = 'dev.wellingtoncosta.stocka'
 version = '1.0.0'
 
 repositories {
@@ -14,7 +14,7 @@ kotlin {
     ios {
         binaries {
             framework {
-                baseName = 'catalog-core'
+                baseName = 'stocka-core'
             }
         }
     }
@@ -48,7 +48,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/wellingtoncosta/catalog-kotlin-multiplatform"
+            url = "https://maven.pkg.github.com/wellingtoncosta/stocka"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
