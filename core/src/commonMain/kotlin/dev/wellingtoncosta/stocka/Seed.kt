@@ -8,4 +8,4 @@ data class Seed(
     val manufacturer: String,
     val measuringUnit: MeasuringUnit = MeasuringUnit.KILOGRAM,
     val expirationDate: LocalDate
-)
+) : Stock.Item

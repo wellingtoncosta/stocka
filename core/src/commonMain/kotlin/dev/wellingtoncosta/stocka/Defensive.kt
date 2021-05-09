@@ -9,4 +9,4 @@ data class Defensive(
     val type: DefensiveType,
     val measuringUnit: MeasuringUnit,
     val expirationDate: LocalDate
-)
+) : Stock.Item
