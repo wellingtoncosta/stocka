@@ -37,3 +37,6 @@ jobs:
 
       - name: Build Core Module
         run: cd core/ && ./gradlew build
+
+      - name: Test Core Module
+        run: cd core/ && ./gradlew jvmTest
