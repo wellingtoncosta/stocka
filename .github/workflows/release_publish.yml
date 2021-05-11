@@ -40,6 +40,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish Core Module Artifacts
-        run: cd core/ && ./gradlew publish
+        run: cd stocka-core/ && ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
