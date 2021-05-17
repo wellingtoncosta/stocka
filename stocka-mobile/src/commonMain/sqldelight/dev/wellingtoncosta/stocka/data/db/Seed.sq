@@ -1,0 +1,10 @@
+import dev.wellingtoncosta.stocka.MeasuringUnit;
+import kotlinx.datetime.LocalDate;
+
+CREATE TABLE seed (
+    id TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    manufacturer TEXT NOT NULL,
+    measuringUnit TEXT AS MeasuringUnit NOT NULL,
+    expirationDate TEXT AS LocalDate NOT NULL
+);

@@ -1,0 +1,18 @@
+# IntelliJ config files
+*.iml
+.idea/
+/.idea/workspace.xml
+/.idea/libraries
+/.idea/misc.xml
+.idea/modules.xml
+/.idea/vcs.xml
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Version control
+vcs.xml

@@ -1,0 +1,12 @@
+import dev.wellingtoncosta.stocka.FertilizerType;
+import dev.wellingtoncosta.stocka.MeasuringUnit;
+import kotlinx.datetime.LocalDate;
+
+CREATE TABLE fertilizer (
+id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    manufacturer TEXT NOT NULL,
+    type TEXT AS FertilizerType NOT NULL,
+    measuringUnit TEXT AS MeasuringUnit NOT NULL,
+    expirationDate TEXT AS LocalDate NOT NULL
+);

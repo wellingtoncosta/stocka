@@ -1,0 +1,12 @@
+import dev.wellingtoncosta.stocka.DefensiveType;
+import dev.wellingtoncosta.stocka.MeasuringUnit;
+import kotlinx.datetime.LocalDate;
+
+CREATE TABLE defensive (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    manufacturer TEXT NOT NULL,
+    type TEXT AS DefensiveType NOT NULL,
+    measuringUnit TEXT AS MeasuringUnit NOT NULL,
+    expirationDate TEXT AS LocalDate NOT NULL
+);

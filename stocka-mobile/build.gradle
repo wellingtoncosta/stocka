@@ -1,0 +1,85 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.5.0'
+    id 'com.squareup.sqldelight' version '1.5.0'
+    id 'com.android.library' version '4.0.2'
+}
+
+archivesBaseName = 'stocka-mobile'
+group = 'dev.wellingtoncosta.stocka'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/wellingtoncosta/stocka"
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+    google()
+}
+
+android {
+    compileSdkVersion 30
+    sourceSets.main.manifest.srcFile('src/androidMain/AndroidManifest.xml')
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    linkSqlite = true
+    StockaDatabase {
+        packageName = "dev.wellingtoncosta.stocka.data.db"
+    }
+}
+
+kotlin {
+    android()
+    def sdkName = System.getenv("SDK_NAME")
+    if (sdkName != null && sdkName.startsWith("iphoneos")) {
+        iosArm64("ios")
+    } else {
+        iosX64("ios")
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'dev.wellingtoncosta.stocka:stocka-core:1.0.0'
+                implementation 'org.jetbrains.kotlinx:kotlinx-datetime:0.2.0'
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test-common:1.5.0'
+                implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common:1.5.0'
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation 'com.squareup.sqldelight:android-driver:1.5.0'
+            }
+        }
+        androidTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test-junit:1.5.0'
+                implementation 'junit:junit:4.13'
+            }
+        }
+        iosMain {
+            dependencies {
+                implementation 'com.squareup.sqldelight:native-driver:1.5.0'
+            }
+        }
+        iosTest {
+
+        }
+    }
+}
